@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8"/>
+<title>ICFO 2021</title>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+<meta name="apple-mobile-web-app-title" content="ICFO 2021"/>
+
+<style type="text/css">
+html, body{
+  background-color: #fafafa;
+  font-size: 14px;
+  color: #333;
+}
+#mySelect{
+  height: 40px;
+  width: 200px;
+}
+#myInput{
+  height: 40px;
+  width: 200px;
+}
+</style>
+<script>
+function onSelectChange(){
+  var v = $('#mySelect').val();
+  $('#myInput').val( v );
+}
+
+$(function(){
+  $('#mySelect').change( function( e ){
+    onSelectChange();
+  });
+  onSelectChange();
+
+  $('#mySelect').dblclick( function( e ){
+    $('#mySelect').css( 'display', 'none' );
+    $('#myInput').css( 'display', 'block' );
+  });
+  
+  $('#myInput').blur( function( e ){
+    var v = $('#myInput').val();
+    var index = -1;
+    $('#mySelect option').each( function( idx, element ){
+      if( v == $(element).attr('value') ){
+        index = idx;
+      }
+    });
+    if( index == -1 ){
+      $('#mySelect').append( '<option value="' + v + '">' + v + '</option>' );
+      $('#mySelect').val( v );
+      $('#myInput').val( v );
+    }
+    $('#mySelect').css( 'display', 'block' );
+    $('#myInput').css( 'display', 'none' );
+  });
+});
+</script>
+</head>
+<body>
+
+<div>
+
+<select id="mySelect">
+<option value="東京">東京</option>
+<option value="大阪">大阪</option>
+<option value="神奈川">神奈川</option>
+<option value="名古屋">名古屋</option>
+<option value="北海道">北海道</option>
+</select>
+<input type="text" id="myInput" style="display:none;" value=""/>
+
+</div>
+
+</body>
+</html>

@@ -17,47 +17,12 @@ html, body{
   font-size: 14px;
   color: #333;
 }
-#mySelect{
-  height: 40px;
-  width: 200px;
-}
-#myInput{
-  height: 40px;
-  width: 200px;
-}
 </style>
 <script>
-function onSelectChange(){
-  var v = $('#mySelect').val();
-  $('#myInput').val( v );
-}
-
 $(function(){
-  $('#mySelect').change( function( e ){
-    onSelectChange();
-  });
-  onSelectChange();
-
-  $('#mySelect').dblclick( function( e ){
-    $('#mySelect').css( 'display', 'none' );
-    $('#myInput').css( 'display', 'block' );
-  });
-  
-  $('#myInput').blur( function( e ){
-    var v = $('#myInput').val();
-    var index = -1;
-    $('#mySelect option').each( function( idx, element ){
-      if( v == $(element).attr('value') ){
-        index = idx;
-      }
-    });
-    if( index == -1 ){
-      $('#mySelect').append( '<option value="' + v + '">' + v + '</option>' );
-      $('#mySelect').val( v );
-      $('#myInput').val( v );
-    }
-    $('#mySelect').css( 'display', 'block' );
-    $('#myInput').css( 'display', 'none' );
+  $('#checkall').change( function( e ){
+    var v = $('#checkall').prop( 'checked' );
+    $('input[type="checkbox"]').prop( 'checked', v );
   });
 });
 </script>
@@ -66,14 +31,13 @@ $(function(){
 
 <div>
 
-<select id="mySelect">
-<option value="東京">東京</option>
-<option value="大阪">大阪</option>
-<option value="神奈川">神奈川</option>
-<option value="名古屋">名古屋</option>
-<option value="北海道">北海道</option>
-</select>
-<input type="text" id="myInput" style="display:none;" value=""/>
+<input type="checkbox" id="checkall"/>(All)<br/>
+
+<input type="checkbox" id="check0"/>Check 0<br/>
+<input type="checkbox" id="check1"/>Check 1<br/>
+<input type="checkbox" id="check2"/>Check 2<br/>
+<input type="checkbox" id="check3"/>Check 3<br/>
+<input type="checkbox" id="check4"/>Check 4<br/>
 
 </div>
 

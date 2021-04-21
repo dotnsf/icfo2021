@@ -1,4 +1,5 @@
 node_modules/
+docs/*.bak
 package-lock.json
 settings.js.*
 !.gitkeep
